@@ -40,8 +40,8 @@ java -jar target/SOME_SNAPSHOT.jar
 - `maxWeight` (number): The maximum weight allowed for transfers. Must be positive
 
 - `availableTransfers` (array): An array of transfer objects, each containing:
-  - `weight` (number): The weight of the transfer.
-  - `cost` (number): The cost associated with the transfer.
+  - `weight` (number): The weight of the transfer. Must be non-negative
+  - `cost` (number): The cost associated with the transfer. Must be non-negative
 
 **Response:**
 
@@ -100,7 +100,7 @@ curl -X POST http://localhost:8080/transfer/cheapest-route -H "Content-Type: app
 
 ---
 
-#### Invalid
+#### Invalid / Empty
 
 **Request:**
 
@@ -111,7 +111,7 @@ curl -X POST http://localhost:8080/transfer/cheapest-route -H "Content-Type: app
 **Response:**
 
 ```json
-{"selectedTransfers":null,"totalCost":0,"totalWeight":0}
+{"selectedTransfers":[],"totalCost":0,"totalWeight":0}
 ```
 
 ---

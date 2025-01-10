@@ -27,13 +27,15 @@ public class TransferController {
 
     @PostMapping("/cheapest-route")
     public ResponseEntity<ResponseDTO> cheapestRoute(@RequestBody RequestDTO requestdto) {
-        if(requestdto.getAvailableTransfers() == null || requestdto.getMaxWeight() <= 0) {
-            // Check request body
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ResponseDTO());
+        if(requestdto == null){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         }
 
         ArrayList<Transfer> result = transferService.getCheapestRoute(requestdto.getAvailableTransfers(), requestdto.getMaxWeight());
 
+        if(result == null){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(getResponseDTO(new ArrayList<>()));
+        }
         return ResponseEntity.status(HttpStatus.OK).body(getResponseDTO(result));
     }
 

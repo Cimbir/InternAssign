@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 public class TransferServiceTests {
 
@@ -88,6 +89,22 @@ public class TransferServiceTests {
         int[] costs = {44,46,90,72,91,40,75,35,8,54,78,40,77,15,61,17,75,29,75,63};
         ArrayList<Transfer> result = getResult(878, weights, costs);
         testResult(result, 17, 1024, 871);
+    }
+
+    @Test
+    void testGetCheapestRouteInvalidMaxWeight() {
+        int[] weights = {1,2,3};
+        int[] costs = {1,2,3};
+        ArrayList<Transfer> result = getResult(-1, weights, costs);
+        assertNull(result);
+    }
+
+    @Test
+    void testGetCheapestRouteInvalidTransfer() {
+        int[] weights = {1,2,-3};
+        int[] costs = {1,2,3};
+        ArrayList<Transfer> result = getResult(10, weights, costs);
+        assertNull(result);
     }
 
     // File tests

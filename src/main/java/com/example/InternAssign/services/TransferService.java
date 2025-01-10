@@ -9,6 +9,16 @@ import java.util.ArrayList;
 public class TransferService {
 
     public ArrayList<Transfer> getCheapestRoute(ArrayList<Transfer> transfers, int maxWeight) {
+        // Check if the input is valid
+        if(maxWeight <= 0 || transfers == null) {
+            return null;
+        }
+        for(Transfer transfer : transfers) {
+            if(transfer.getWeight() < 0 || transfer.getCost() < 0) {
+                return null;
+            }
+        }
+
         // Knapsack with costs problem solution
         int n = transfers.size();
         int[][] dp = new int[n + 1][maxWeight + 1];
