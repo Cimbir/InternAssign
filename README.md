@@ -19,7 +19,7 @@ Clone the project and navigate to the project root directory.
 ### Run JAR
 
 ```bash
-java -jar target/SOME_SNAPSHOT.jar
+java -jar target/InternAssign-0.0.1-SNAPSHOT.jar
 ```
 
 ## API
